@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   root :to => "cuisine_tags#index"
   # Routes for the Restaurant resource:
   # CREATE
