@@ -1,6 +1,7 @@
 class CuisineTagsController < ApplicationController
   def index
-    @cuisine_tags = CuisineTag.page(params[:page]).per(10)
+    @q = CuisineTag.ransack(params[:q])
+    @cuisine_tags = @q.result(:distinct => true).page(params[:page]).per(10)
 
     render("cuisine_tags/index.html.erb")
   end
