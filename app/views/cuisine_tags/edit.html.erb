@@ -1,0 +1,37 @@
+<!-- Validation failure messages -->
+<% if @cuisine_tag.errors.any? %>
+  <% @cuisine_tag.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Edit Cuisine Tag #<%= @cuisine_tag.id %></h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/update_cuisine_tag/<%= @cuisine_tag.id %>" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for cuisine_type -->
+      <div class="form-group">
+        <label for="cuisine_type" class="control-label">
+          Cuisine type
+        </label>
+
+        <input type="text" id="cuisine_type" name="cuisine_type" placeholder="Cuisine type" class="form-control" value="<%= @cuisine_tag.cuisine_type %>">
+      </div>
+
+      <button class="btn btn-warning">
+        Update Cuisine Tag
+      </button>
+      or
+      <a href="/cuisine_tags/<%= @cuisine_tag.id %>">Cancel</a>
+    </form>
+  </div>
+</div>
