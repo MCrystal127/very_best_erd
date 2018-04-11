@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @restaurant.errors.any? %>
+  <% @restaurant.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Restaurant</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_restaurant" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for restaurant_name -->
+      <div class="form-group">
+        <label for="restaurant_name" class="control-label">
+          Restaurant name
+        </label>
+
+        <input type="text" id="restaurant_name" name="restaurant_name" placeholder="Restaurant name" class="form-control" value="<%= @restaurant.restaurant_name %>">
+      </div>
+
+      <!-- Label and input for restaurant_address -->
+      <div class="form-group">
+        <label for="restaurant_address" class="control-label">
+          Restaurant address
+        </label>
+
+        <input type="text" id="restaurant_address" name="restaurant_address" placeholder="Restaurant address" class="form-control" value="<%= @restaurant.restaurant_address %>">
+      </div>
+
+      <!-- Label and input for restaurant_description -->
+      <div class="form-group">
+        <label for="restaurant_description" class="control-label">
+          Restaurant description
+        </label>
+
+        <textarea id="restaurant_description" name="restaurant_description" placeholder="Restaurant description" class="form-control" rows="3"><%= @restaurant.restaurant_description %></textarea>
+      </div>
+
+      <button class="btn btn-success">
+        Create Restaurant
+      </button>
+      or
+      <a href="/restaurants">Cancel</a>
+    </form>
+  </div>
+</div>
