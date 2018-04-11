@@ -1,6 +1,6 @@
 class CuisineTagsController < ApplicationController
   def index
-    @cuisine_tags = CuisineTag.all
+    @cuisine_tags = CuisineTag.page(params[:page]).per(10)
 
     render("cuisine_tags/index.html.erb")
   end
